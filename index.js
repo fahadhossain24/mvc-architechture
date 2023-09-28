@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose')
 const userRoute = require('./routers/user.router');
+const todosRoute = require('./routers/todo.router')
 const { viewCount } = require('./middleware/viewCount');
 const { showDate } = require('./middleware/showDate');
 
@@ -16,7 +17,8 @@ mongoose.connect('mongodb://127.0.0.1:27017').then(() => {
 
 
 
-app.use('/api/v1/user', userRoute)
+app.use('/api/v1/user', userRoute);
+app.use('/api/v1/todos', todosRoute)
 
 app.use('*', (req, res) => {
     res.send('route not found')
